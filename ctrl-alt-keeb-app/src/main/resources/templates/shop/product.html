@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragment/head :: head('Product')}"> </head>
+  <body>
+    <header th:replace="~{fragment/header :: header}"></header>
+    <main>
+      <h1 th:text="${product.name}">Keyboard Name</h1>
+
+      <p th:text="${product.description}">Description</p>
+
+      <p>
+        Layout:
+        <span th:text="${product.layout}"></span>
+      </p>
+
+      <p>
+        Keys:
+        <span th:text="${product.keyCount}"></span>
+      </p>
+
+      <p>Price: $<span th:text="${product.price}"></span></p>
+    </main>
+    <footer th:replace="~{fragment/footer :: footer}"></footer>
+  </body>
+</html>

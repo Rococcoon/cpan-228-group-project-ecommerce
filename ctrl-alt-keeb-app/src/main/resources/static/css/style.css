@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 10vw 10vh;
+  width: 100%;
+}
