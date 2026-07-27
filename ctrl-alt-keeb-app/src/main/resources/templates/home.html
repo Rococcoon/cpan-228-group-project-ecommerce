@@ -1,12 +1,176 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{fragment/head :: head('Home')}"> </head>
+  <head th:replace="~{fragment/head :: head('Home')}"></head>
+
   <body>
     <header th:replace="~{fragment/header :: header}"></header>
+
     <main>
-      <h1>Welcome to Ctrl-Alt-Keeb</h1>
-      <p>Custom split keyboards and mechanical keyboard parts.</p>
+      <!-- Hero Section -->
+      <section class="bg-light border-bottom py-5">
+        <div class="container py-5">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+              <span class="badge text-bg-success mb-3">
+                Custom Mechanical Keyboards
+              </span>
+
+              <h1 class="display-4 fw-bold mb-3">
+                Find the right split keyboard for your workspace
+              </h1>
+
+              <p class="lead text-muted mb-4">
+                Explore ergonomic mechanical keyboards, compare layouts and
+                discover compact designs made for comfortable and efficient
+                typing.
+              </p>
+
+              <div class="d-flex flex-wrap gap-2">
+                <a th:href="@{/shop}" class="btn btn-success btn-lg">
+                  Browse Keyboards
+                </a>
+
+                <a
+                  th:href="@{/keyboard-guide}"
+                  class="btn btn-outline-dark btn-lg"
+                >
+                  Read Keyboard Guide
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                  <h2 class="h4 mb-3">Why split keyboards?</h2>
+
+                  <p class="text-muted">
+                    Split keyboards allow users to position each half
+                    independently, helping create a more natural typing
+                    position.
+                  </p>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-0">
+                      ✓ Ergonomic split designs
+                    </li>
+
+                    <li class="list-group-item px-0">
+                      ✓ Compact and portable layouts
+                    </li>
+
+                    <li class="list-group-item px-0">
+                      ✓ Multiple key-count options
+                    </li>
+
+                    <li class="list-group-item px-0">
+                      ✓ Customizable mechanical keyboards
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="container py-5">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Explore Ctrl-Alt-Keeb</h2>
+
+          <p class="text-muted">
+            Browse products, compare keyboard specifications and learn about
+            different layouts.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <div class="fs-1 mb-3">⌨️</div>
+
+                <h3 class="h4">Keyboard Inventory</h3>
+
+                <p class="text-muted">
+                  View available keyboards with their price, stock quantity,
+                  layout and number of keys.
+                </p>
+
+                <a th:href="@{/shop}" class="btn btn-outline-success">
+                  View Products
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-4">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <div class="fs-1 mb-3">🔎</div>
+
+                <h3 class="h4">Search and Compare</h3>
+
+                <p class="text-muted">
+                  Filter keyboards by layout and key count, then sort products
+                  by name, price, stock or date added.
+                </p>
+
+                <a th:href="@{/shop}" class="btn btn-outline-success">
+                  Search Keyboards
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-4">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <div class="fs-1 mb-3">📖</div>
+
+                <h3 class="h4">Layout Guide</h3>
+
+                <p class="text-muted">
+                  Learn the differences between compact, medium and larger
+                  split-keyboard layouts.
+                </p>
+
+                <a
+                  th:href="@{/keyboard-guide}"
+                  class="btn btn-outline-success"
+                >
+                  Open Guide
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="container pb-5">
+        <div class="card border-0 bg-dark text-light shadow-sm">
+          <div
+            class="card-body p-4 p-md-5 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"
+          >
+            <div>
+              <h2 class="h3 mb-2">Ready to explore?</h2>
+
+              <p class="text-secondary mb-0">
+                Browse the keyboard catalogue and find a layout that matches
+                your typing preferences.
+              </p>
+            </div>
+
+            <a th:href="@{/shop}" class="btn btn-success btn-lg">
+              Visit Shop
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
+
     <footer th:replace="~{fragment/footer :: footer}"></footer>
   </body>
 </html>

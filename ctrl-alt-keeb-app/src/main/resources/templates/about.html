@@ -1,12 +1,180 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{fragment/head :: head('About')}"> </head>
+  <head th:replace="~{fragment/head :: head('About')}"></head>
+
   <body>
     <header th:replace="~{fragment/header :: header}"></header>
-    <main>
-      <h1>ABOUT PAGE</h1>
-      <p>Custom split keyboards and mechanical keyboard parts.</p>
+
+    <main class="container py-5">
+      <!-- Heading -->
+      <section class="text-center mb-5">
+        <span class="badge text-bg-success mb-3">
+          About the Project
+        </span>
+
+        <h1 class="display-5 fw-bold">About Ctrl-Alt-Keeb</h1>
+
+        <p class="lead text-muted mx-auto" style="max-width: 760px">
+          Ctrl-Alt-Keeb is an e-commerce inventory application for custom split
+          keyboards and mechanical keyboard parts.
+        </p>
+      </section>
+
+      <!-- Project Purpose -->
+      <section class="row g-4 mb-5">
+        <div class="col-lg-7">
+          <article class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <h2 class="h3 mb-3">Project Purpose</h2>
+
+              <p>
+                The application provides a clean interface for browsing and
+                managing a collection of mechanical keyboards.
+              </p>
+
+              <p>
+                Users can view product information, filter keyboards by layout
+                and key count, sort results and open detailed product pages.
+              </p>
+
+              <p class="mb-0">
+                New keyboards can also be submitted through a validated form
+                and saved to the application database.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-5">
+          <article class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <h2 class="h3 mb-3">Main Features</h2>
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item px-0">
+                  Product catalogue
+                </li>
+
+                <li class="list-group-item px-0">
+                  Search and filtering
+                </li>
+
+                <li class="list-group-item px-0">
+                  Server-side sorting and pagination
+                </li>
+
+                <li class="list-group-item px-0">
+                  Validated product form
+                </li>
+
+                <li class="list-group-item px-0">
+                  Database persistence with Spring Data JPA
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Technology -->
+      <section class="mb-5">
+        <div class="text-center mb-4">
+          <h2>Technology Used</h2>
+
+          <p class="text-muted">
+            The application uses a modern Spring Boot web-development stack.
+          </p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="card h-100 border-0 shadow-sm text-center">
+              <div class="card-body">
+                <strong>Java 21</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="card h-100 border-0 shadow-sm text-center">
+              <div class="card-body">
+                <strong>Spring Boot</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="card h-100 border-0 shadow-sm text-center">
+              <div class="card-body">
+                <strong>Thymeleaf</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="card h-100 border-0 shadow-sm text-center">
+              <div class="card-body">
+                <strong>Bootstrap</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="card h-100 border-0 shadow-sm text-center">
+              <div class="card-body">
+                <strong>Spring Data JPA</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="card h-100 border-0 shadow-sm text-center">
+              <div class="card-body">
+                <strong>H2 Database</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="h3 text-center mb-4">Project Team</h2>
+
+          <div class="row g-4 justify-content-center">
+            <div class="col-md-5">
+              <div class="border rounded p-4 h-100">
+                <h3 class="h5">Lukas Myhal</h3>
+
+                <p class="text-muted mb-0">
+                  Project planning, application setup and core e-commerce
+                  implementation.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <div class="border rounded p-4 h-100">
+                <h3 class="h5">Yash Patel</h3>
+
+                <p class="text-muted mb-0">
+                  Product form, validation, database integration, sorting and
+                  user-interface improvements.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="text-center mt-5">
+        <a th:href="@{/shop}" class="btn btn-success btn-lg">
+          Browse Keyboards
+        </a>
+      </div>
     </main>
+
     <footer th:replace="~{fragment/footer :: footer}"></footer>
   </body>
 </html>
