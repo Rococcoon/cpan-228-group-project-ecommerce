@@ -1,0 +1,85 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block
+      th:replace="~{fragment/head :: head('Register - Ctrl Alt Keeb')}"
+    ></th:block>
+  </head>
+  <body class="bg-light">
+    <!-- Navigation Header -->
+    <div th:replace="~{fragment/navbar :: navbar}"></div>
+
+    <div
+      class="container d-flex justify-content-center align-items-center"
+      style="min-height: 80vh"
+    >
+      <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Ctrl Alt Keeb</h2>
+          <p class="text-muted">Create an account to manage your cart</p>
+        </div>
+
+        <!-- Success message after registration -->
+        <div
+          th:if="${param.registered}"
+          class="alert alert-success"
+          role="alert"
+        >
+          Registration successful! Please log in.
+        </div>
+
+        <form method="post" th:action="@{/register}" th:object="${user}">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              th:field="*{username}"
+              class="form-control"
+              required
+              autofocus
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              th:field="*{email}"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              th:field="*{password}"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-dark w-100 mb-3">
+            Register
+          </button>
+
+          <div class="text-center">
+            <span class="text-muted small">Already have an account?</span>
+            <a
+              th:href="@{/login}"
+              class="text-decoration-none small fw-bold ms-1"
+              >Log in</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{fragment/footer :: footer}"></div>
+  </body>
+</html>

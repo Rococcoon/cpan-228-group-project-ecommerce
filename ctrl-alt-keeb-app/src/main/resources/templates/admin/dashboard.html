@@ -1,0 +1,86 @@
+<!doctype html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+>
+  <head>
+    <th:block
+      th:replace="~{fragment/head :: head('Admin Dashboard - Ctrl Alt Keeb')}"
+    ></th:block>
+  </head>
+  <body class="bg-light">
+    <!-- Navigation Header -->
+    <div th:replace="~{fragment/navbar :: navbar}"></div>
+
+    <div class="container my-5">
+      <!-- Welcome Banner -->
+      <div class="p-5 mb-4 bg-dark text-white rounded-3 shadow">
+        <div class="container-fluid py-3">
+          <h1 class="display-5 fw-bold">Admin Dashboard</h1>
+          <p class="col-md-8 fs-4">
+            Manage your split keyboard catalog, inventory, and user permissions
+            from a central hub.
+          </p>
+          <hr class="my-4 bg-secondary" />
+          <p class="mb-0">
+            Logged in as:
+            <strong class="text-warning" sec:authentication="name"
+              >Admin</strong
+            >
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Stats / Management Cards -->
+      <div class="row g-4 mb-5">
+        <!-- Product Management Card -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-primary">Products</h5>
+              <p class="card-text text-muted">
+                Add new split keyboards, update layouts, pricing, and stock
+                counts.
+              </p>
+              <a th:href="@{/shop}" class="btn btn-outline-primary btn-sm"
+                >View Store Catalog</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory / Stock Card -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-success">Inventory</h5>
+              <p class="card-text text-muted">
+                Monitor stock levels for components like Corne, Glove80, and
+                Piantor Pro.
+              </p>
+              <a href="#" class="btn btn-outline-success btn-sm"
+                >Manage Inventory</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- User Roles Card -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-danger">Users & Roles</h5>
+              <p class="card-text text-muted">
+                Review registered user accounts, staff permissions, and roles.
+              </p>
+              <a href="#" class="btn btn-outline-danger btn-sm">View Users</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{fragment/footer :: footer}"></div>
+  </body>
+</html>

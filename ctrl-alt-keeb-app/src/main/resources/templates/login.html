@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block
+      th:replace="~{fragment/head :: head('Login - Ctrl Alt Keeb')}"
+    ></th:block>
+  </head>
+  <body class="bg-light">
+    <!-- Navigation Header -->
+    <div th:replace="~{fragment/navbar :: navbar}"></div>
+
+    <div
+      class="container d-flex justify-content-center align-items-center"
+      style="min-height: 80vh"
+    >
+      <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Ctrl Alt Keeb</h2>
+          <p class="text-muted">Sign in to access your cart and account</p>
+        </div>
+
+        <!-- Error Notification -->
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+          Invalid username or password.
+        </div>
+
+        <!-- Logout Notification -->
+        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+          You have been logged out successfully.
+        </div>
+
+        <form method="post" th:action="@{/login}">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              required
+              autofocus
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-dark w-100 mb-3">Log In</button>
+
+          <div class="text-center">
+            <span class="text-muted small">Don't have an account?</span>
+            <a
+              th:href="@{/register}"
+              class="text-decoration-none small fw-bold ms-1"
+              >Register here</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{fragment/footer :: footer}"></div>
+  </body>
+</html>

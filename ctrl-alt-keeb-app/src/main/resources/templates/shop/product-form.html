@@ -49,10 +49,7 @@
                     placeholder="Example: Corne Wireless"
                   />
 
-                  <div
-                    class="invalid-feedback"
-                    th:errors="*{name}"
-                  >
+                  <div class="invalid-feedback" th:errors="*{name}">
                     Product name error
                   </div>
                 </div>
@@ -72,10 +69,7 @@
                     placeholder="Describe the keyboard and its main features"
                   ></textarea>
 
-                  <div
-                    class="invalid-feedback"
-                    th:errors="*{description}"
-                  >
+                  <div class="invalid-feedback" th:errors="*{description}">
                     Description error
                   </div>
                 </div>
@@ -101,10 +95,7 @@
                         placeholder="199.99"
                       />
 
-                      <div
-                        class="invalid-feedback"
-                        th:errors="*{price}"
-                      >
+                      <div class="invalid-feedback" th:errors="*{price}">
                         Price error
                       </div>
                     </div>
@@ -126,10 +117,7 @@
                       placeholder="10"
                     />
 
-                    <div
-                      class="invalid-feedback"
-                      th:errors="*{stock}"
-                    >
+                    <div class="invalid-feedback" th:errors="*{stock}">
                       Stock error
                     </div>
                   </div>
@@ -159,10 +147,7 @@
                       </option>
                     </select>
 
-                    <div
-                      class="invalid-feedback"
-                      th:errors="*{layout}"
-                    >
+                    <div class="invalid-feedback" th:errors="*{layout}">
                       Layout error
                     </div>
                   </div>
@@ -190,10 +175,7 @@
                       </option>
                     </select>
 
-                    <div
-                      class="invalid-feedback"
-                      th:errors="*{keyCount}"
-                    >
+                    <div class="invalid-feedback" th:errors="*{keyCount}">
                       Key count error
                     </div>
                   </div>
@@ -203,9 +185,7 @@
                 <div class="mb-4">
                   <label for="imageUrl" class="form-label fw-semibold">
                     Image URL
-                    <span class="text-muted fw-normal">
-                      (optional)
-                    </span>
+                    <span class="text-muted fw-normal"> (optional) </span>
                   </label>
 
                   <input
@@ -217,10 +197,7 @@
                     placeholder="https://example.com/keyboard.jpg"
                   />
 
-                  <div
-                    class="invalid-feedback"
-                    th:errors="*{imageUrl}"
-                  >
+                  <div class="invalid-feedback" th:errors="*{imageUrl}">
                     Image URL error
                   </div>
                 </div>
@@ -231,10 +208,7 @@
                     Save Keyboard
                   </button>
 
-                  <a
-                    th:href="@{/shop}"
-                    class="btn btn-outline-secondary"
-                  >
+                  <a th:href="@{/shop}" class="btn btn-outline-secondary">
                     Cancel
                   </a>
                 </div>
