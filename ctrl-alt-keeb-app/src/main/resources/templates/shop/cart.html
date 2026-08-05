@@ -1,12 +1,94 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{fragment/head :: head('Cart')}"> </head>
+  <head th:replace="~{fragment/head :: head('Shopping Cart')}"></head>
+
   <body>
     <header th:replace="~{fragment/header :: header}"></header>
-    <main>
-      <h1>CART PAGE</h1>
-      <p>Custom split keyboards and mechanical keyboard parts.</p>
+
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h1 class="mb-1">Shopping Cart</h1>
+
+              <p class="text-muted mb-0">
+                Review the keyboards selected for purchase.
+              </p>
+            </div>
+
+            <a th:href="@{/shop}" class="btn btn-outline-primary">
+              Continue Shopping
+            </a>
+          </div>
+
+          <!-- Empty Cart -->
+          <section class="card border-0 shadow-sm">
+            <div class="card-body text-center p-5">
+              <div class="display-1 mb-3">🛒</div>
+
+              <h2 class="h3">Your cart is currently empty</h2>
+
+              <p class="text-muted mx-auto mb-4" style="max-width: 560px">
+                Browse the keyboard catalogue to compare layouts, key counts,
+                prices and available stock.
+              </p>
+
+              <a th:href="@{/shop}" class="btn btn-success btn-lg">
+                Browse Keyboards
+              </a>
+            </div>
+          </section>
+
+          <!-- Information -->
+          <section class="row g-4 mt-2">
+            <div class="col-md-4">
+              <div class="card h-100 border-0 bg-light">
+                <div class="card-body text-center">
+                  <div class="fs-2 mb-2">⌨️</div>
+
+                  <h3 class="h5">Multiple Layouts</h3>
+
+                  <p class="text-muted small mb-0">
+                    Compare compact, medium and larger keyboard layouts.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card h-100 border-0 bg-light">
+                <div class="card-body text-center">
+                  <div class="fs-2 mb-2">📦</div>
+
+                  <h3 class="h5">Stock Information</h3>
+
+                  <p class="text-muted small mb-0">
+                    View current product availability before making a
+                    selection.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card h-100 border-0 bg-light">
+                <div class="card-body text-center">
+                  <div class="fs-2 mb-2">🔎</div>
+
+                  <h3 class="h5">Product Details</h3>
+
+                  <p class="text-muted small mb-0">
+                    Review specifications and pricing on each product page.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </main>
+
     <footer th:replace="~{fragment/footer :: footer}"></footer>
   </body>
 </html>

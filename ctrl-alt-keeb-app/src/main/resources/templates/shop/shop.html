@@ -6,69 +6,167 @@
     <div th:replace="~{fragment/header :: header}"></div>
 
     <main class="container py-4">
-      <h1 class="mb-4">Ctrl-Alt-Keeb Shop</h1>
+      <div
+        class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4"
+      >
+        <h1 class="mb-0">Ctrl-Alt-Keeb Shop</h1>
 
-      <!-- Search / Filter Form -->
+        <a th:href="@{/products/new}" class="btn btn-success">
+          + Add Keyboard
+        </a>
+      </div>
+
       <div class="card border-0 shadow-sm p-4 mb-4 bg-light">
-        <form method="get" action="/shop" class="row g-3 align-items-end">
-          <!-- Preserve sorting/pagination settings -->
-          <input type="hidden" name="sort" th:value="${sort}" />
-          <input type="hidden" name="direction" th:value="${direction}" />
-          <input type="hidden" name="size" th:value="${pageSize}" />
-
-          <!-- Layout Filter -->
-          <div class="col-md-4">
-            <label class="form-label fw-bold text-muted small">
+        <form
+          method="get"
+          th:action="@{/shop}"
+          class="row g-3 align-items-end"
+        >
+          <div class="col-md-3">
+            <label
+              for="layout"
+              class="form-label fw-bold text-muted small"
+            >
               Keyboard Layout
             </label>
 
-            <select name="layout" class="form-select">
-              <option value="" th:selected="${layout == ''}">
-                All Layouts
+            <select id="layout" name="layout" class="form-select">
+              <option value="">All Layouts</option>
+
+              <option value="Advantage"
+                th:selected="${layout == 'Advantage'}">
+                Advantage
               </option>
 
-              <option value="Corne" th:selected="${layout == 'Corne'}">
+              <option value="Chocofi"
+                th:selected="${layout == 'Chocofi'}">
+                Chocofi
+              </option>
+
+              <option value="Corne"
+                th:selected="${layout == 'Corne'}">
                 Corne
               </option>
 
-              <option value="Lily58" th:selected="${layout == 'Lily58'}">
-                Lily58
-              </option>
-
-              <option value="Sofle" th:selected="${layout == 'Sofle'}">
-                Sofle
-              </option>
-
-              <option value="Ergodox" th:selected="${layout == 'Ergodox'}">
+              <option value="Ergodox"
+                th:selected="${layout == 'Ergodox'}">
                 Ergodox
               </option>
 
-              <option
-                value="Moonlander"
-                th:selected="${layout == 'Moonlander'}"
-              >
+              <option value="Helix"
+                th:selected="${layout == 'Helix'}">
+                Helix
+              </option>
+
+              <option value="Keyball"
+                th:selected="${layout == 'Keyball'}">
+                Keyball
+              </option>
+
+              <option value="Kyria"
+                th:selected="${layout == 'Kyria'}">
+                Kyria
+              </option>
+
+              <option value="Let's Split"
+                th:selected="${layout == 'Let''s Split'}">
+                Let's Split
+              </option>
+
+              <option value="Lily58"
+                th:selected="${layout == 'Lily58'}">
+                Lily58
+              </option>
+
+              <option value="Lulu"
+                th:selected="${layout == 'Lulu'}">
+                Lulu
+              </option>
+
+              <option value="Moonlander"
+                th:selected="${layout == 'Moonlander'}">
                 Moonlander
+              </option>
+
+              <option value="Nyquist"
+                th:selected="${layout == 'Nyquist'}">
+                Nyquist
+              </option>
+
+              <option value="Piantor"
+                th:selected="${layout == 'Piantor'}">
+                Piantor
+              </option>
+
+              <option value="Preonic"
+                th:selected="${layout == 'Preonic'}">
+                Preonic
+              </option>
+
+              <option value="Redox"
+                th:selected="${layout == 'Redox'}">
+                Redox
+              </option>
+
+              <option value="Sofle"
+                th:selected="${layout == 'Sofle'}">
+                Sofle
+              </option>
+
+              <option value="Sweep"
+                th:selected="${layout == 'Sweep'}">
+                Sweep
+              </option>
+
+              <option value="Totem"
+                th:selected="${layout == 'Totem'}">
+                Totem
+              </option>
+
+              <option value="Voyager"
+                th:selected="${layout == 'Voyager'}">
+                Voyager
               </option>
             </select>
           </div>
 
-          <!-- Key Count Filter -->
-          <div class="col-md-4">
-            <label class="form-label fw-bold text-muted small">
+          <div class="col-md-2">
+            <label
+              for="keyCount"
+              class="form-label fw-bold text-muted small"
+            >
               Number of Keys
             </label>
 
-            <select name="keyCount" class="form-select">
-              <option value="0" th:selected="${keyCount == 0}">
-                Any Key Count
-              </option>
+            <select
+              id="keyCount"
+              name="keyCount"
+              class="form-select"
+            >
+              <option value="0">Any Key Count</option>
 
               <option value="34" th:selected="${keyCount == 34}">
                 34 Keys
               </option>
 
+              <option value="36" th:selected="${keyCount == 36}">
+                36 Keys
+              </option>
+
               <option value="42" th:selected="${keyCount == 42}">
                 42 Keys
+              </option>
+
+              <option value="48" th:selected="${keyCount == 48}">
+                48 Keys
+              </option>
+
+              <option value="50" th:selected="${keyCount == 50}">
+                50 Keys
+              </option>
+
+              <option value="52" th:selected="${keyCount == 52}">
+                52 Keys
               </option>
 
               <option value="58" th:selected="${keyCount == 58}">
@@ -79,84 +177,170 @@
                 60 Keys
               </option>
 
+              <option value="61" th:selected="${keyCount == 61}">
+                61 Keys
+              </option>
+
+              <option value="64" th:selected="${keyCount == 64}">
+                64 Keys
+              </option>
+
+              <option value="72" th:selected="${keyCount == 72}">
+                72 Keys
+              </option>
+
               <option value="76" th:selected="${keyCount == 76}">
                 76 Keys
+              </option>
+
+              <option value="80" th:selected="${keyCount == 80}">
+                80 Keys
               </option>
             </select>
           </div>
 
-          <!-- Filter Type -->
           <div class="col-md-2">
-            <label class="form-label fw-bold text-muted small"> Filter </label>
+            <label
+              for="sort"
+              class="form-label fw-bold text-muted small"
+            >
+              Sort By
+            </label>
 
-            <select name="filterType" class="form-select">
-              <option value="all" th:selected="${filterType == 'all'}">
-                All
+            <select id="sort" name="sort" class="form-select">
+              <option value="name" th:selected="${sort == 'name'}">
+                Product Name
               </option>
 
-              <option value="layout" th:selected="${filterType == 'layout'}">
-                Layout
+              <option value="price" th:selected="${sort == 'price'}">
+                Price
+              </option>
+
+              <option value="stock" th:selected="${sort == 'stock'}">
+                Stock
               </option>
 
               <option
                 value="keyCount"
-                th:selected="${filterType == 'keyCount'}"
+                th:selected="${sort == 'keyCount'}"
               >
-                Key Count
+                Number of Keys
               </option>
 
               <option
-                value="layoutAndKeyCount"
-                th:selected="${filterType == 'layoutAndKeyCount'}"
+                value="createdAt"
+                th:selected="${sort == 'createdAt'}"
               >
-                Both
+                Date Added
               </option>
             </select>
           </div>
 
-          <!-- Buttons -->
-          <div class="col-md-2 d-flex gap-2">
-            <button class="btn btn-success flex-grow-1">Search</button>
+          <div class="col-md-2">
+            <label
+              for="direction"
+              class="form-label fw-bold text-muted small"
+            >
+              Order
+            </label>
 
-            <a href="/shop" class="btn btn-outline-secondary"> Reset </a>
+            <select
+              id="direction"
+              name="direction"
+              class="form-select"
+            >
+              <option
+                value="ASC"
+                th:selected="${direction == 'ASC'}"
+              >
+                Ascending
+              </option>
+
+              <option
+                value="DESC"
+                th:selected="${direction == 'DESC'}"
+              >
+                Descending
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-3 d-flex gap-2">
+            <button
+              type="submit"
+              class="btn btn-success flex-grow-1"
+            >
+              Apply
+            </button>
+
+            <a
+              th:href="@{/shop}"
+              class="btn btn-outline-secondary"
+            >
+              Reset
+            </a>
           </div>
         </form>
       </div>
 
+      <div
+        class="alert alert-info"
+        th:if="${products.empty}"
+      >
+        No keyboards matched your search.
+      </div>
+
       <div class="row">
-        <div class="col-md-4 mb-4" th:each="product : ${products.content}">
+        <div
+          class="col-md-6 col-lg-4 mb-4"
+          th:each="product : ${products.content}"
+        >
           <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${product.name}">
+            <img
+              th:if="${product.imageUrl != null and !product.imageUrl.isBlank()}"
+              th:src="${product.imageUrl}"
+              th:alt="${product.name}"
+              class="card-img-top"
+              style="height: 220px; object-fit: cover"
+            />
+
+            <div class="card-body d-flex flex-column">
+              <h5
+                class="card-title"
+                th:text="${product.name}"
+              >
                 Keyboard Name
               </h5>
 
-              <p class="card-text" th:text="${product.description}">
+              <p
+                class="card-text"
+                th:text="${product.description}"
+              >
                 Product description
               </p>
 
               <div class="mb-2">
                 <strong>Layout:</strong>
-                <span th:text="${product.layout}"> Corne </span>
+                <span th:text="${product.layout}">Corne</span>
               </div>
 
               <div class="mb-2">
                 <strong>Keys:</strong>
-                <span th:text="${product.keyCount}"> 42 </span>
+                <span th:text="${product.keyCount}">42</span>
               </div>
 
               <div class="mb-2">
                 <strong>Stock:</strong>
-                <span th:text="${product.stock}"> 5 </span>
+                <span th:text="${product.stock}">5</span>
               </div>
 
               <div class="mb-3">
-                <strong>$</strong>
-                <span th:text="${product.price}"> 249.99 </span>
+                <strong>Price:</strong>
+                $<span th:text="${product.price}">249.99</span>
               </div>
 
               <a
-                class="btn btn-primary"
+                class="btn btn-primary mt-auto align-self-start"
                 th:href="@{/shop/{id}(id=${product.id})}"
               >
                 View Details
@@ -166,82 +350,126 @@
         </div>
       </div>
 
-      <!-- Pagination Controls -->
       <div
         th:if="${products.totalPages > 1}"
         class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 mb-5 gap-3"
       >
-        <!-- Page Information -->
         <div class="text-muted small">
           Page
-          <span class="fw-bold" th:text="${products.number + 1}"> 1 </span>
+          <span
+            class="fw-bold"
+            th:text="${products.number + 1}"
+          >
+            1
+          </span>
           of
-          <span class="fw-bold" th:text="${products.totalPages}"> 1 </span>
+          <span
+            class="fw-bold"
+            th:text="${products.totalPages}"
+          >
+            1
+          </span>
           (
-          <span th:text="${products.totalElements}"> 0 </span>
+          <span th:text="${products.totalElements}">0</span>
           products )
         </div>
 
-        <!-- Pagination Buttons -->
         <nav aria-label="Product pagination">
           <ul class="pagination pagination-sm mb-0">
-            <!-- First Page -->
             <li
               class="page-item"
               th:classappend="${products.first} ? 'disabled'"
             >
-              <a class="page-link" th:href="@{/shop(page=0)}"> First </a>
+              <a
+                class="page-link"
+                th:href="@{/shop(
+                  page=0,
+                  size=${products.size},
+                  sort=${sort},
+                  direction=${direction},
+                  layout=${layout},
+                  keyCount=${keyCount}
+                )}"
+              >
+                First
+              </a>
             </li>
 
-            <!-- Previous Page -->
             <li
               class="page-item"
               th:classappend="${!products.hasPrevious()} ? 'disabled'"
             >
               <a
                 class="page-link"
-                th:href="@{/shop(page=${products.number - 1})}"
+                th:href="@{/shop(
+                  page=${products.number - 1},
+                  size=${products.size},
+                  sort=${sort},
+                  direction=${direction},
+                  layout=${layout},
+                  keyCount=${keyCount}
+                )}"
               >
                 Previous
               </a>
             </li>
 
-            <!-- Page Numbers -->
             <li
               class="page-item"
-              th:each="p : ${#numbers.sequence(0, products.totalPages - 1)}"
-              th:classappend="${p == products.number} ? 'active'"
+              th:each="pageNumber :
+                ${#numbers.sequence(0, products.totalPages - 1)}"
+              th:classappend="${pageNumber == products.number}
+                ? 'active'"
             >
               <a
                 class="page-link"
-                th:text="${p + 1}"
-                th:href="@{/shop(page=${p})}"
+                th:text="${pageNumber + 1}"
+                th:href="@{/shop(
+                  page=${pageNumber},
+                  size=${products.size},
+                  sort=${sort},
+                  direction=${direction},
+                  layout=${layout},
+                  keyCount=${keyCount}
+                )}"
               >
                 1
               </a>
             </li>
 
-            <!-- Next Page -->
             <li
               class="page-item"
               th:classappend="${!products.hasNext()} ? 'disabled'"
             >
               <a
                 class="page-link"
-                th:href="@{/shop(page=${products.number + 1})}"
+                th:href="@{/shop(
+                  page=${products.number + 1},
+                  size=${products.size},
+                  sort=${sort},
+                  direction=${direction},
+                  layout=${layout},
+                  keyCount=${keyCount}
+                )}"
               >
                 Next
               </a>
             </li>
 
-            <!-- Last Page -->
             <li
               class="page-item"
               th:classappend="${products.last} ? 'disabled'"
             >
               <a
                 class="page-link"
-                th:href="@{/shop(page=${products.totalPages - 1})}"
+                th:href="@{/shop(
+                  page=${products.totalPages - 1},
+                  size=${products.size},
+                  sort=${sort},
+                  direction=${direction},
+                  layout=${layout},
+                  keyCount=${keyCount}
+                )}"
               >
                 Last
               </a>

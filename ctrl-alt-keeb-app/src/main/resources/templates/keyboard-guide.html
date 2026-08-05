@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragment/head :: head('Keyboard Guide')}"></head>
+
+  <body>
+    <header th:replace="~{fragment/header :: header}"></header>
+
+    <main class="container py-5">
+      <div class="text-center mb-5">
+        <h1>Mechanical Keyboard Guide</h1>
+
+        <p class="lead text-muted">
+          Learn about common split-keyboard layouts and choose the right
+          keyboard for your typing style.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h2 class="h4">Compact Layouts</h2>
+
+              <p>
+                Compact keyboards such as Corne and Sweep reduce the number of
+                keys and encourage the use of programmable layers.
+              </p>
+
+              <p class="mb-0">
+                They are suitable for users who value portability and minimal
+                hand movement.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h2 class="h4">Medium Layouts</h2>
+
+              <p>
+                Layouts such as Lily58 and Sofle provide additional keys while
+                maintaining an ergonomic split design.
+              </p>
+
+              <p class="mb-0">
+                They offer a balance between compact size and access to common
+                keyboard functions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h2 class="h4">Larger Layouts</h2>
+
+              <p>
+                Ergodox and Moonlander keyboards include larger thumb clusters
+                and more physical keys.
+              </p>
+
+              <p class="mb-0">
+                They are useful for users who prefer dedicated keys and
+                extensive customization.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="card border-0 shadow-sm mt-5">
+        <div class="card-body p-4">
+          <h2 class="h4">Choosing a Keyboard</h2>
+
+          <p>
+            Consider the number of keys, switch type, layout, portability,
+            programmability and available desk space before selecting a
+            keyboard.
+          </p>
+
+          <a th:href="@{/shop}" class="btn btn-primary">
+            Browse Keyboards
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer th:replace="~{fragment/footer :: footer}"></footer>
+  </body>
+</html>
