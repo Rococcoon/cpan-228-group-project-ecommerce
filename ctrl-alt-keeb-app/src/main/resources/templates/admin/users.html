@@ -1,0 +1,120 @@
+<!doctype html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+>
+
+<head>
+    <th:block
+      th:replace="~{fragment/head :: head('User Management - Ctrl Alt Keeb')}"
+    ></th:block>
+</head>
+
+
+<body class="bg-light">
+
+<div th:replace="~{fragment/navbar :: navbar}"></div>
+
+
+<div class="container my-5">
+
+    <div class="p-4 mb-4 bg-dark text-white rounded shadow">
+
+        <h1 class="fw-bold">
+            User Management
+        </h1>
+
+        <p>
+            Manage registered users and remove accounts.
+        </p>
+
+    </div>
+
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+
+            <table class="table table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                <tr th:each="user : ${users}">
+
+                    <td th:text="${user.id}"></td>
+
+                    <td th:text="${user.username}"></td>
+
+                    <td th:text="${user.email}"></td>
+
+                    <td th:text="${user.role}"></td>
+
+                    <td th:text="${user.createdAt}"></td>
+
+
+                    <td>
+
+    <a
+      th:href="@{/admin/users/edit/{id}(id=${user.id})}"
+      class="btn btn-primary btn-sm"
+    >
+        Edit
+    </a>
+
+
+    <form
+      th:action="@{/admin/users/delete/{id}(id=${user.id})}"
+      method="post"
+      style="display:inline"
+    >
+
+        <button
+          type="submit"
+          class="btn btn-danger btn-sm"
+        >
+            Delete
+        </button>
+
+    </form>
+
+</td>
+
+
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div th:replace="~{fragment/footer :: footer}"></div>
+
+
+</body>
+
+</html>

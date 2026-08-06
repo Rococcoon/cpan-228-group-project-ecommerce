@@ -19,12 +19,13 @@ public class DataLoader implements ApplicationRunner {
   }
 
   @Override
-  public void run(ApplicationArguments args) throws Exception {
+  public void run(ApplicationArguments args) {
+
     System.out.println(">>> DATALOADER RUNNING NOW <<<");
 
-    User existingAdmin = userRepository.findByUsername("admin").orElse(null);
+    // Create Admin account
+    if (userRepository.findByUsername("admin").isEmpty()) {
 
-    if (existingAdmin == null) {
       User admin = new User(
           "admin",
           "admin@ctrlaltkeeb.com",
@@ -32,9 +33,24 @@ public class DataLoader implements ApplicationRunner {
           "ROLE_ADMIN");
 
       userRepository.save(admin);
-      System.out.println("--> Seeded default admin user: admin / admin123 meep meep");
-    } else {
-      System.out.println("--> Admin user already exists in DB!");
+
+      System.out.println("--> Created admin account");
     }
+
+    // Create Staff account
+    if (userRepository.findByUsername("staff").isEmpty()) {
+
+      User staff = new User(
+          "staff",
+          "staff@ctrlaltkeeb.com",
+          passwordEncoder.encode("staff123"),
+          "ROLE_STAFF");
+
+      userRepository.save(staff);
+
+      System.out.println("--> Created staff account");
+    }
+
+    System.out.println(">>> DATALOADER COMPLETE <<<");
   }
 }

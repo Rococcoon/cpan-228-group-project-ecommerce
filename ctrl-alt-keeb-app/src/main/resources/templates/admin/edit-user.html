@@ -1,0 +1,106 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<th:block
+ th:replace="~{fragment/head :: head('Edit User - Ctrl Alt Keeb')}"
+></th:block>
+
+</head>
+
+
+<body class="bg-light">
+
+
+<div th:replace="~{fragment/navbar :: navbar}"></div>
+
+
+<div class="container my-5">
+
+
+<div class="card shadow">
+
+<div class="card-body">
+
+
+<h2>Edit User</h2>
+
+
+<form
+th:action="@{/admin/users/edit/{id}(id=${user.id})}"
+method="post"
+>
+
+
+<label class="form-label">
+Email
+</label>
+
+<input
+class="form-control mb-3"
+type="email"
+name="email"
+th:value="${user.email}"
+>
+
+
+<label class="form-label">
+Role
+</label>
+
+
+<select
+class="form-control mb-3"
+name="role"
+>
+
+
+<option value="ROLE_CUSTOMER">
+Customer
+</option>
+
+
+<option value="ROLE_STAFF">
+Staff
+</option>
+
+
+<option value="ROLE_ADMIN">
+Admin
+</option>
+
+
+</select>
+
+
+<button class="btn btn-success">
+Save Changes
+</button>
+
+
+<a
+href="/admin/users"
+class="btn btn-secondary"
+>
+Cancel
+</a>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div th:replace="~{fragment/footer :: footer}"></div>
+
+
+</body>
+
+</html>
