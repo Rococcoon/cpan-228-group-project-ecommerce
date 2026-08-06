@@ -1,5 +1,7 @@
 package com.ctrlaltkeeb.app.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -24,35 +26,27 @@ public class CartItem {
   public CartItem() {
   }
 
-  public CartItem(Cart cart, Product product, int quantity) {
+  public CartItem(
+      Cart cart,
+      Product product,
+      int quantity) {
+
     this.cart = cart;
     this.product = product;
     this.quantity = quantity;
+
   }
 
-  // Getters and Setters
   public Long getId() {
     return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public Cart getCart() {
     return cart;
   }
 
-  public void setCart(Cart cart) {
-    this.cart = cart;
-  }
-
   public Product getProduct() {
     return product;
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
   }
 
   public int getQuantity() {
@@ -61,5 +55,21 @@ public class CartItem {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
+  }
+
+  public void setCart(Cart cart) {
+    this.cart = cart;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
+
+  public BigDecimal getSubtotal() {
+
+    return product.getPrice()
+        .multiply(
+            BigDecimal.valueOf(quantity));
+
   }
 }

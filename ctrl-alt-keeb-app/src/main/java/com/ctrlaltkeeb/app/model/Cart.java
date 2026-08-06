@@ -1,6 +1,8 @@
 package com.ctrlaltkeeb.app.model;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,27 +29,51 @@ public class Cart {
   }
 
   public void addItem(Product product, int quantity) {
+
     for (CartItem item : items) {
-      if (item.getProduct().getId().equals(product.getId())) {
-        item.setQuantity(item.getQuantity() + quantity);
+
+      if (item.getProduct().getId()
+          .equals(product.getId())) {
+
+        item.setQuantity(
+            item.getQuantity() + quantity);
+
         return;
       }
     }
-    CartItem newItem = new CartItem(this, product, quantity);
+
+    CartItem newItem = new CartItem(
+        this,
+        product,
+        quantity);
+
     items.add(newItem);
   }
 
-  public void removeItem(Long productId) {
-    items.removeIf(item -> item.getProduct().getId().equals(productId));
+  public void removeItem(Long itemId) {
+
+    items.removeIf(
+        item -> item.getId()
+            .equals(itemId));
+
   }
 
-  // Getters and Setters
+  public BigDecimal getTotal() {
+
+    return items.stream()
+        .map(item -> item.getProduct()
+            .getPrice()
+            .multiply(
+                BigDecimal.valueOf(
+                    item.getQuantity())))
+        .reduce(
+            BigDecimal.ZERO,
+            BigDecimal::add);
+
+  }
+
   public Long getId() {
     return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public User getUser() {
@@ -65,4 +91,5 @@ public class Cart {
   public void setItems(List<CartItem> items) {
     this.items = items;
   }
+
 }

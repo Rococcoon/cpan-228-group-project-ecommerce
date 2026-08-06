@@ -1,12 +1,184 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{fragment/head :: head('Checkout')}"> </head>
-  <body>
-    <header th:replace="~{fragment/header :: header}"></header>
-    <main>
-      <h1>CHECKOUT PAGE</h1>
-      <p>Custom split keyboards and mechanical keyboard parts.</p>
-    </main>
-    <footer th:replace="~{fragment/footer :: footer}"></footer>
-  </body>
+
+
+<head th:replace="~{fragment/head :: head('Checkout')}"></head>
+
+
+<body>
+
+
+<header th:replace="~{fragment/header :: header}"></header>
+
+
+
+<main class="container py-5">
+
+
+<h1 class="mb-4">
+Checkout
+</h1>
+
+
+
+
+<div class="card shadow">
+
+
+<div class="card-body">
+
+
+
+<h3>
+Order Summary
+</h3>
+
+
+
+<table class="table">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>
+Product
+</th>
+
+<th>
+Quantity
+</th>
+
+<th>
+Price
+</th>
+
+<th>
+Subtotal
+</th>
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+
+<tr th:each="item : ${cart.items}">
+
+
+<td th:text="${item.product.name}">
+Product
+</td>
+
+
+
+<td th:text="${item.quantity}">
+1
+</td>
+
+
+
+<td>
+
+$
+
+<span th:text="${item.product.price}">
+0
+</span>
+
+</td>
+
+
+
+<td>
+
+$
+
+<span th:text="${item.subtotal}">
+0
+</span>
+
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+
+
+<hr>
+
+
+
+<h4 class="text-end">
+
+
+Total:
+
+$
+
+<span th:text="${cart.total}">
+0
+</span>
+
+
+</h4>
+
+
+
+
+<div class="text-end mt-4">
+
+
+<form th:action="@{/shop/order/place}"
+      method="post">
+
+
+<button class="btn btn-primary btn-lg">
+
+Place Order
+
+</button>
+
+
+</form>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</main>
+
+
+
+
+<footer th:replace="~{fragment/footer :: footer}"></footer>
+
+
+</body>
+
+
 </html>
