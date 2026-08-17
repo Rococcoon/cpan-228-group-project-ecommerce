@@ -1,94 +1,269 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="~{fragment/head :: head('Shopping Cart')}"></head>
 
-  <body>
-    <header th:replace="~{fragment/header :: header}"></header>
+<head th:replace="~{fragment/head :: head('Shopping Cart')}"></head>
 
-    <main class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-9">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-              <h1 class="mb-1">Shopping Cart</h1>
+<body>
 
-              <p class="text-muted mb-0">
-                Review the keyboards selected for purchase.
-              </p>
-            </div>
+<header th:replace="~{fragment/header :: header}"></header>
 
-            <a th:href="@{/shop}" class="btn btn-outline-primary">
-              Continue Shopping
-            </a>
-          </div>
 
-          <!-- Empty Cart -->
-          <section class="card border-0 shadow-sm">
-            <div class="card-body text-center p-5">
-              <div class="display-1 mb-3">🛒</div>
+<main class="container py-5">
 
-              <h2 class="h3">Your cart is currently empty</h2>
 
-              <p class="text-muted mx-auto mb-4" style="max-width: 560px">
-                Browse the keyboard catalogue to compare layouts, key counts,
-                prices and available stock.
-              </p>
+<h1 class="mb-4">
+    Shopping Cart
+</h1>
 
-              <a th:href="@{/shop}" class="btn btn-success btn-lg">
-                Browse Keyboards
-              </a>
-            </div>
-          </section>
 
-          <!-- Information -->
-          <section class="row g-4 mt-2">
-            <div class="col-md-4">
-              <div class="card h-100 border-0 bg-light">
-                <div class="card-body text-center">
-                  <div class="fs-2 mb-2">⌨️</div>
 
-                  <h3 class="h5">Multiple Layouts</h3>
+<div th:if="${cart.items.isEmpty()}">
 
-                  <p class="text-muted small mb-0">
-                    Compare compact, medium and larger keyboard layouts.
-                  </p>
-                </div>
-              </div>
-            </div>
+    <div class="card shadow-sm text-center p-5">
 
-            <div class="col-md-4">
-              <div class="card h-100 border-0 bg-light">
-                <div class="card-body text-center">
-                  <div class="fs-2 mb-2">📦</div>
-
-                  <h3 class="h5">Stock Information</h3>
-
-                  <p class="text-muted small mb-0">
-                    View current product availability before making a
-                    selection.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="card h-100 border-0 bg-light">
-                <div class="card-body text-center">
-                  <div class="fs-2 mb-2">🔎</div>
-
-                  <h3 class="h5">Product Details</h3>
-
-                  <p class="text-muted small mb-0">
-                    Review specifications and pricing on each product page.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div class="display-1">
+            🛒
         </div>
-      </div>
-    </main>
 
-    <footer th:replace="~{fragment/footer :: footer}"></footer>
-  </body>
+        <h2>
+            Your cart is currently empty
+        </h2>
+
+
+        <a th:href="@{/shop}" 
+           class="btn btn-primary mt-3">
+            Continue Shopping
+        </a>
+
+    </div>
+
+</div>
+
+
+
+
+
+<div th:unless="${cart.items.isEmpty()}">
+
+
+<div class="card shadow">
+
+
+<div class="card-body">
+
+
+<table class="table table-striped align-middle">
+
+
+<thead class="table-dark">
+
+<tr>
+
+<th>
+Product
+</th>
+
+<th>
+Layout
+</th>
+
+<th>
+Price
+</th>
+
+<th>
+Quantity
+</th>
+
+<th>
+Subtotal
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+</thead>
+
+
+
+
+<tbody>
+
+
+<tr th:each="item : ${cart.items}">
+
+
+<td th:text="${item.product.name}">
+Product
+</td>
+
+
+
+<td th:text="${item.product.layout}">
+Layout
+</td>
+
+
+
+<td>
+
+$
+<span th:text="${item.product.price}">
+0
+</span>
+
+</td>
+
+
+
+
+
+<td>
+
+
+<form th:action="@{/shop/cart/decrease/{id}(id=${item.id})}"
+      method="post"
+      style="display:inline">
+
+
+<button class="btn btn-sm btn-secondary">
+-
+</button>
+
+
+</form>
+
+
+
+
+<span class="mx-2"
+      th:text="${item.quantity}">
+1
+</span>
+
+
+
+
+<form th:action="@{/shop/cart/increase/{id}(id=${item.id})}"
+      method="post"
+      style="display:inline">
+
+
+<button class="btn btn-sm btn-secondary">
++
+</button>
+
+
+</form>
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+$
+
+<span th:text="${item.subtotal}">
+0
+</span>
+
+</td>
+
+
+
+
+
+<td>
+
+
+<form th:action="@{/shop/cart/remove/{id}(id=${item.id})}"
+      method="post">
+
+
+<button class="btn btn-danger btn-sm">
+
+Remove
+
+</button>
+
+
+</form>
+
+
+</td>
+
+
+
+</tr>
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+<hr>
+
+
+
+<div class="text-end">
+
+
+<h4>
+
+Total:
+
+$
+
+<span th:text="${cart.total}">
+0
+</span>
+
+
+</h4>
+
+
+
+<a th:href="@{/shop/checkout}"
+   class="btn btn-success mt-3">
+
+Proceed to Checkout
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</main>
+
+
+
+<footer th:replace="~{fragment/footer :: footer}"></footer>
+
+
+</body>
+
 </html>
