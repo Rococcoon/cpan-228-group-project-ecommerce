@@ -8,83 +8,231 @@
       th:replace="~{fragment/head :: head('Admin Dashboard - Ctrl Alt Keeb')}"
     ></th:block>
   </head>
+
   <body class="bg-light">
-    <!-- Navigation Header -->
+
     <div th:replace="~{fragment/navbar :: navbar}"></div>
 
     <div class="container my-5">
+
       <!-- Welcome Banner -->
       <div class="p-5 mb-4 bg-dark text-white rounded-3 shadow">
         <div class="container-fluid py-3">
-          <h1 class="display-5 fw-bold">Admin Dashboard</h1>
+
+          <h1 class="display-5 fw-bold">
+            Admin Dashboard
+          </h1>
+
           <p class="col-md-8 fs-4">
-            Manage your split keyboard catalog, inventory, and user permissions
-            from a central hub.
+            Manage your split keyboard catalog, inventory,
+            and user permissions from a central hub.
           </p>
+
           <hr class="my-4 bg-secondary" />
+
           <p class="mb-0">
             Logged in as:
-            <strong class="text-warning" sec:authentication="name"
-              >Admin</strong
-            >
+            <strong
+              class="text-warning"
+              sec:authentication="name">
+              Admin
+            </strong>
           </p>
+
         </div>
       </div>
 
-      <!-- Quick Stats / Management Cards -->
+      <!-- Management Cards -->
       <div class="row g-4 mb-5">
-        <!-- Product Management Card -->
+
+        <!-- Products -->
         <div class="col-md-4">
+
           <div class="card h-100 shadow-sm border-0">
+
             <div class="card-body">
-              <h5 class="card-title fw-bold text-primary">Products</h5>
+
+              <h5 class="card-title fw-bold text-primary">
+                Products
+              </h5>
+
               <p class="card-text text-muted">
-                Add new split keyboards, update layouts, pricing, and stock
-                counts.
+                Add new split keyboards, update layouts,
+                pricing, and product information.
               </p>
-              <a th:href="@{/shop}" class="btn btn-outline-primary btn-sm"
-                >View Store Catalog</a
-              >
+
+              <a
+                th:href="@{/shop}"
+                class="btn btn-outline-primary btn-sm">
+                View Store Catalog
+              </a>
+
             </div>
+
           </div>
+
         </div>
 
-        <!-- Inventory / Stock Card -->
+        <!-- Inventory -->
         <div class="col-md-4">
+
           <div class="card h-100 shadow-sm border-0">
+
             <div class="card-body">
-              <h5 class="card-title fw-bold text-success">Inventory</h5>
+
+              <h5 class="card-title fw-bold text-success">
+                Inventory
+              </h5>
+
               <p class="card-text text-muted">
-                Monitor stock levels for components like Corne, Glove80, and
-                Piantor Pro.
+                Inventory information is loaded from
+                the Inventory Service REST API.
               </p>
-              <a href="#" class="btn btn-outline-success btn-sm"
-                >Manage Inventory</a
-              >
+
+              <span
+                th:if="${inventoryServiceAvailable}"
+                class="badge bg-success">
+                Inventory Service Online
+              </span>
+
+              <span
+                th:unless="${inventoryServiceAvailable}"
+                class="badge bg-danger">
+                Inventory Service Unavailable
+              </span>
+
             </div>
+
           </div>
+
         </div>
 
-        <!-- User Roles Card -->
+        <!-- Users -->
         <div class="col-md-4">
+
           <div class="card h-100 shadow-sm border-0">
+
             <div class="card-body">
-              <h5 class="card-title fw-bold text-danger">Users & Roles</h5>
+
+              <h5 class="card-title fw-bold text-danger">
+                Users & Roles
+              </h5>
+
               <p class="card-text text-muted">
-                Review registered user accounts, staff permissions, and roles.
+                Review registered user accounts,
+                permissions, and roles.
               </p>
-              <a 
-  th:href="@{/admin/users}" 
-  class="btn btn-outline-danger btn-sm">
-  View Users
-</a>
+
+              <a
+                th:href="@{/admin/users}"
+                class="btn btn-outline-danger btn-sm">
+                View Users
+              </a>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
+      <!-- Remote Inventory Data -->
+      <div class="card shadow-sm border-0 mb-5">
+
+        <div class="card-header bg-success text-white">
+
+          <h4 class="mb-0">
+            Inventory Service
+          </h4>
+
+        </div>
+
+        <div class="card-body">
+
+          <!-- Service Offline -->
+          <div
+            th:unless="${inventoryServiceAvailable}"
+            class="alert alert-warning mb-0">
+
+            The Inventory Service is currently unavailable.
+            The main application is still running normally.
+
+          </div>
+
+          <!-- Service Online -->
+          <div th:if="${inventoryServiceAvailable}">
+
+            <div
+              th:if="${#lists.isEmpty(inventoryItems)}"
+              class="alert alert-info">
+
+              The Inventory Service is online,
+              but no inventory records were found.
+
+            </div>
+
+            <div
+              th:unless="${#lists.isEmpty(inventoryItems)}"
+              class="table-responsive">
+
+              <table
+                class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                  <tr>
+                    <th>Inventory ID</th>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                    <th>Last Updated</th>
+                  </tr>
+
+                </thead>
+
+                <tbody>
+
+                  <tr th:each="item : ${inventoryItems}">
+
+                    <td th:text="${item['id']}">
+                      1
+                    </td>
+
+                    <td>
+
+                      <a
+                        th:href="@{/shop/{id}(id=${item['productId']})}"
+                        th:text="${item['productId']}">
+                        1
+                      </a>
+
+                    </td>
+
+                    <td th:text="${item['quantity']}">
+                      0
+                    </td>
+
+                    <td th:text="${item['lastUpdated']}">
+                      -
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- Footer -->
     <div th:replace="~{fragment/footer :: footer}"></div>
+
   </body>
 </html>
