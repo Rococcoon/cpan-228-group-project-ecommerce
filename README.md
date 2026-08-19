@@ -1,320 +1,466 @@
 # CTRL ALT KEEB
 
-# CPAN-228 · Web Application Development
+CTRL ALT KEEB is a Spring Boot e-commerce web application for split and ergonomic mechanical keyboards.
 
-# Project Deliverables Overview
+The application allows users to browse keyboard products, view product details, register and log in, manage a shopping cart, and place orders. Administrators have access to additional management features for users and products.
 
-> **A note on creativity**
->
-> The requirements below describe the technical capabilities your app must demonstrate. How you present them, what you name things, how your UI is laid out, and what story your data tells—that part is entirely up to you. Aim to build something you would actually want to show in a portfolio.
-
+The project uses Spring Boot, Spring Data JPA, Spring Security, Thymeleaf, Bootstrap, H2, and MySQL.
 
 ---
 
-# Deliverable 1 · 25%
+## Technologies Used
 
-## Web Front-End & Database Integration
-
-### The Goal
-
-Build a working web application that lets a user interact with your domain through a browser.
-
-By the end of this deliverable your app should have:
-
-- Real pages
-- A real form
-- A real database behind it
-
-Someone should be able to open it, look around, add something, and see it persist.
-
-## What You Need to Demonstrate
-
-### Navigation & Pages
-
-Your application needs:
-
-- A home page
-- At least **two additional informational pages** relevant to your domain
-
-Requirements:
-
-- Tell a coherent story about what your app does.
-- Use semantic HTML.
-- Use Thymeleaf for templating.
-- The home page should be the natural entry point, not just a placeholder.
-
-### At Least One Form That Does Something
-
-Build a form that allows a user to add a primary entity to your system (for example, a product, course, etc.), using **Assignment 0 as your compass**.
-
-The form should include:
-
-- Clear labels
-- Appropriate field types
-- Server-side validation
-
-Validation must ensure:
-
-- Required fields are present
-- Numeric values are within a sensible range
-- Categorical fields (type, brand, category, etc.) come from predefined options
-
-When validation fails, display clear, user-friendly error messages.
-
-### Database Persistence
-
-Form submissions must save to a **real database** (no in-memory lists).
-
-Requirements:
-
-- Use Spring Data JPA
-- Define an entity with proper annotations
-- Persist through a repository
-- Include:
-  - Generated ID
-  - Timestamp
-
-After saving, redirect the user to a page showing the newly created record.
-
-### List View with Search & Sort
-
-Display all saved records in a clean layout.
-
-Support:
-
-- Filtering by at least **two meaningful attributes**
-- Sorting by at least **two fields**
-
-Use **Spring Data JPA pagination and sorting** on the server side.
-
-Do **not** manipulate an in-memory list.
-
-### Sample Data on Startup
-
-Seed the database using `data.sql`.
-
-Requirements:
-
-- Populate realistic sample data
-- App should display records immediately after startup
-- No manual data entry required
-
-### Presentation & Styling
-
-Use Bootstrap consistently across all pages.
-
-Requirements:
-
-- Professional appearance
-- Responsive layout
-
-### Grading Focus
-
-- Controllers and routing are correct
-- Thymeleaf templates render properly
-- Validation rejects invalid input with clear messages
-- Data saves and loads from the database
-- List view filters and sorts correctly
-- Sample data loads on startup
-- Bootstrap styling is applied consistently
+- Java 21
+- Spring Boot 4.1.0
+- Spring MVC
+- Spring Data JPA
+- Spring Security
+- Thymeleaf
+- Bootstrap
+- Maven
+- H2 Database
+- MySQL
 
 ---
 
-# Deliverable 2 · 15%
+## Features
 
-## Security & User Management
+### Product Management
 
-### The Goal
+The application provides a product catalog for split and ergonomic keyboards.
 
-Add a real security model to the application built in Deliverable 1.
+Features include:
 
-Different users should:
+- Browse available products
+- View individual product details
+- Add new products
+- Edit existing products
+- Server-side form validation
+- Product filtering
+- Product sorting
+- Database persistence using Spring Data JPA
+- Sample product data for development
 
-- Log in
-- Have different permissions
+### User Management and Security
 
-## What You Need to Demonstrate
+The application uses Spring Security for authentication and authorization.
 
-### Users and Registration
+Features include:
 
-Implement user registration.
+- User registration
+- BCrypt password encoding
+- Custom login page
+- Login error handling
+- Logout functionality
+- Role-based authorization
+- Protected application routes
 
-Requirements:
+The application supports the following roles:
 
-- Passwords encoded using BCrypt
-- Never store plaintext passwords
-- `User` entity implements `UserDetails`
-- Store users using a Spring Data repository
-
-### Roles That Make Sense for Your Domain
-
-Create at least **three meaningful roles**.
-
-Examples:
-
-**E-commerce**
-
-- Admin
-- Staff
-- Customer
-
-**Learning Platform**
-
-- Admin
-- Instructor
-- Student
-
-Roles should actually control permissions—not simply exist as labels.
-
-### Login Page
-
-Create a custom login page.
-
-Requirements:
-
-- Matches the application's styling
-- Displays helpful error messages for failed logins
-
-### Protected Routes
-
-Configure a `SecurityFilterChain`.
-
-Public pages should include:
-
-- Home
-- About
-- Registration
-
-Authentication should be required for:
-
-- Create
-- Edit
-- Delete operations
-
-Some actions must also require specific roles.
+- `ROLE_ADMIN`
+- `ROLE_STAFF`
+- `ROLE_CUSTOMER`
 
 ### Admin Interface
 
-Create an admin-only management page.
+Administrators have access to a protected admin interface.
 
-Requirements:
+Admin functionality includes:
 
-- View entities
-- Edit entities
-- Delete entities
+- Admin dashboard
+- View registered users
+- Edit user information
+- Edit user roles
+- Delete users
 
-This page must:
+Routes under `/admin/**` are restricted to administrators.
 
-- Be inaccessible to non-admin users
-- Clearly appear as an administrative interface
+### Shopping Cart and Checkout
 
-### Grading Focus
+Authenticated users can:
 
-- Registration encodes passwords correctly
-- Users are saved properly
-- Login and logout function correctly
-- Protected routes redirect unauthenticated users
-- Roles enforce permissions correctly
-- Admin page is functional and restricted
-- Logged-in user is displayed where appropriate
-- Custom login page is styled and shows errors
+- Add products to their cart
+- View cart contents
+- Manage product quantities
+- View order totals
+- Proceed to checkout
+- Enter shipping information
+- Place an order
+
+Orders and order items are stored using JPA entities.
 
 ---
 
-# Deliverable 3 (Final Project) · 20%
+# Configuration and Spring Profiles
 
-## Microservices, REST APIs & DevOps
+The application uses YAML configuration files instead of traditional `.properties` configuration.
 
-### The Goal
+Configuration is divided into:
 
-Expand the application into a distributed system.
-
-Extract one responsibility into a separate Spring Boot microservice exposing a REST API, then integrate it with the main application.
-
-## What You Need to Demonstrate
-
-### A Second Microservice
-
-Build a separate Spring Boot application responsible for a specialized resource.
-
-Examples:
-
-**E-commerce**
-
-- Distribution Centre Service
-
-**Learning Platform**
-
-- Grading Service
-
-Requirements:
-
-- Separate database
-- Separate entities
-- Independent business logic
-- Not merely a pass-through
-
-### Full REST API
-
-Expose a complete REST API.
-
-Endpoints should include:
-
-- `GET` all
-- `GET` by ID
-- `POST`
-- `PUT`
-- `DELETE`
-
-Also provide at least one custom endpoint that filters or queries using multiple parameters.
-
-Use:
-
-- Proper HTTP semantics
-- Appropriate HTTP status codes
-
-### Security on the Microservice
-
-Protect endpoints using HTTP Basic Authentication.
-
-The microservice should maintain its own user configuration:
-
-- In-memory users **or**
-- JDBC users
-
-This configuration should be independent of the primary application.
-
-### Spring Profiles
-
-Configure two Spring profiles.
-
-#### Dev
-
-- H2 in-memory database
-
-#### QA
-
-- PostgreSQL
-- Docker
-
-Each profile should include:
-
-- Separate `application.yml`
-- Separate initialization script
-
-### Primary App Consumes the Microservice
-
-Use `RestTemplate` in the primary application.
-
-Requirements:
-
-- At least one form or admin action calls the microservice
-- Handle failures gracefully if the microservice is unavailable
-- Do not allow the primary application to crash
-- Admin dashboard displays:
-  - Local database data
-  - Remote microservice data
-
+```text
+src/main/resources/application.yml
+src/main/resources/application-dev.yml
+src/main/resources/application-qa.yml
 ```
 
+`application.yml` contains configuration shared between environments.
+
+The `dev` profile is used for local development with H2.
+
+The `qa` profile is used with a persistent MySQL database.
+
+The default profile is `dev`.
+
+Profiles can be switched from the command line without modifying Java source code.
+
+---
+
+# Development Profile - H2
+
+The `dev` profile uses an in-memory H2 database.
+
+Default configuration:
+
+```text
+Database: H2
+Database Name: ctrlaltkeeb
+JDBC URL: jdbc:h2:mem:ctrlaltkeeb
+Username: sa
+Password: blank
 ```
+
+The H2 console is enabled at:
+
+```text
+http://localhost:8080/h2-console
+```
+
+The development database is created when the application starts.
+
+## Run Using the Development Profile
+
+Open a terminal in the `ctrl-alt-keeb-app` directory:
+
+```powershell
+cd ctrl-alt-keeb-app
+```
+
+Run:
+
+```powershell
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=dev"
+```
+
+The application will be available at:
+
+```text
+http://localhost:8080
+```
+
+---
+
+# QA Profile - MySQL
+
+The `qa` profile uses a persistent MySQL database.
+
+MySQL must be installed and running before starting the application with this profile.
+
+The default configuration is:
+
+```text
+Host: localhost
+Port: 3306
+Database: ctrlaltkeeb
+Username: root
+Password: root
+```
+
+Create the database before starting the QA profile:
+
+```sql
+CREATE DATABASE ctrlaltkeeb;
+```
+
+The default JDBC connection is:
+
+```text
+jdbc:mysql://localhost:3306/ctrlaltkeeb
+```
+
+---
+
+## Environment Variables
+
+Database configuration can be changed using environment variables.
+
+Supported variables:
+
+```text
+DB_HOST
+DB_PORT
+DB_NAME
+DB_USERNAME
+DB_PASSWORD
+```
+
+The QA configuration uses placeholders with default values.
+
+For example:
+
+```text
+${DB_PASSWORD:root}
+```
+
+This allows database credentials to be provided without changing the application's source code.
+
+Example using PowerShell:
+
+```powershell
+$env:DB_HOST="localhost"
+$env:DB_PORT="3306"
+$env:DB_NAME="ctrlaltkeeb"
+$env:DB_USERNAME="root"
+$env:DB_PASSWORD="root"
+```
+
+If your local MySQL configuration uses different credentials, change these environment variables accordingly.
+
+---
+
+## Run Using the QA Profile
+
+From the `ctrl-alt-keeb-app` directory:
+
+```powershell
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=qa"
+```
+
+The application will be available at:
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Switching Profiles
+
+No Java source-code modifications are required when changing database environments.
+
+### Development / H2
+
+```powershell
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=dev"
+```
+
+### QA / MySQL
+
+```powershell
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=qa"
+```
+
+Spring Boot automatically loads the appropriate profile-specific YAML configuration.
+
+---
+
+# Building the Application
+
+Java 21 is required to build and run the application.
+
+Check the installed Java version:
+
+```powershell
+java -version
+```
+
+From the `ctrl-alt-keeb-app` directory, build the project using:
+
+```powershell
+./mvnw package -DskipTests
+```
+
+After a successful build, Maven will display:
+
+```text
+BUILD SUCCESS
+```
+
+---
+
+# Running the Project After a Fresh Clone
+
+1. Clone the repository.
+
+```powershell
+git clone <repository-url>
+```
+
+2. Enter the project directory.
+
+```powershell
+cd cpan-228-group-project-ecommerce
+cd ctrl-alt-keeb-app
+```
+
+3. Make sure Java 21 is installed.
+
+```powershell
+java -version
+```
+
+4. To run using H2:
+
+```powershell
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=dev"
+```
+
+5. Open:
+
+```text
+http://localhost:8080
+```
+
+For the QA environment, start MySQL, create the `ctrlaltkeeb` database, configure environment variables if necessary, and run:
+
+```powershell
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=qa"
+```
+
+---
+
+# Project Structure
+
+```text
+cpan-228-group-project-ecommerce/
+|
+|-- ctrl-alt-keeb-app/
+|   |
+|   |-- src/main/java/com/ctrlaltkeeb/app/
+|   |   |-- config/
+|   |   |-- controller/
+|   |   |-- model/
+|   |   |-- repository/
+|   |   `-- service/
+|   |
+|   |-- src/main/resources/
+|   |   |-- templates/
+|   |   |-- static/
+|   |   |-- data.sql
+|   |   |-- application.yml
+|   |   |-- application-dev.yml
+|   |   `-- application-qa.yml
+|   |
+|   |-- pom.xml
+|   |-- mvnw
+|   `-- mvnw.cmd
+|
+|-- inventory-service/
+|
+`-- README.md
+```
+
+---
+
+# Database Configuration
+
+The application supports two database environments.
+
+## Development
+
+The development environment uses H2 in-memory storage.
+
+```text
+Profile: dev
+Database: H2
+```
+
+This environment is intended for quick local development and testing.
+
+## QA
+
+The QA environment uses MySQL.
+
+```text
+Profile: qa
+Database: MySQL
+```
+
+This provides persistent storage and demonstrates that the application can switch database environments using Spring profiles without source-code changes.
+
+---
+
+# Security
+
+Spring Security is used throughout the application.
+
+Security features include:
+
+- BCrypt password encoding
+- User authentication
+- Custom login page
+- Logout
+- Role-based authorization
+- Protected routes
+- Admin-only management functionality
+
+User information is persisted through Spring Data JPA.
+
+---
+
+# Team Contributions
+
+## Yash Patel
+
+- Product form functionality
+- Product validation
+- Product management and UI improvements
+- Shopping cart functionality and improvements
+- Registration functionality
+- Security and user management improvements
+- Admin user management
+- User editing and deletion
+- Cart persistence improvements
+- Checkout and order placement fixes
+- YAML configuration
+- Development H2 profile
+- QA MySQL profile
+- Environment-variable database configuration
+- Profile testing and application stabilization
+- Final project documentation
+
+## Lukas Myhal
+
+- Initial Spring Boot project structure
+- Core e-commerce application setup
+- Application domain and model development
+- Security and admin dashboard foundation
+- Checkout development
+- Order and OrderItem models
+- Inventory service initialization
+- Repository integration
+- General project integration and maintenance
+
+---
+
+# Optional Inventory Service
+
+The repository also contains an `inventory-service` Spring Boot project that was started as an optional microservice extension.
+
+The main CTRL ALT KEEB application does not depend on this optional service to run. The primary application can run independently using either the H2 development profile or the MySQL QA profile.
+
+---
+
+# Deliverable 3 Configuration Summary
+
+The final application demonstrates:
+
+- YAML-based Spring Boot configuration
+- Common configuration using `application.yml`
+- Separate development configuration using `application-dev.yml`
+- Separate QA configuration using `application-qa.yml`
+- H2 in-memory development database
+- Persistent MySQL QA database
+- Environment-variable database credentials
+- Command-line Spring profile switching
+- No source-code modifications required when changing environments
+- Existing security, product, cart, checkout, and administration functionality maintained across the application
