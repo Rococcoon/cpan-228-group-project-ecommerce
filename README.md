@@ -289,20 +289,20 @@ BUILD SUCCESS
 
 # Running the Project After a Fresh Clone
 
-1. Clone the repository.
+1. Clone the repository:
 
 ```powershell
 git clone <repository-url>
 ```
 
-2. Enter the project directory.
+2. Enter the project directory:
 
 ```powershell
 cd cpan-228-group-project-ecommerce
 cd ctrl-alt-keeb-app
 ```
 
-3. Make sure Java 21 is installed.
+3. Make sure Java 21 is installed:
 
 ```powershell
 java -version
@@ -314,7 +314,7 @@ java -version
 ./mvnw spring-boot:run "-Dspring-boot.run.profiles=dev"
 ```
 
-5. Open:
+5. Open the application at:
 
 ```text
 http://localhost:8080

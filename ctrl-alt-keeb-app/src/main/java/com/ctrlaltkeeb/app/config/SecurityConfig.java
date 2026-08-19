@@ -21,15 +21,12 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
         .authorizeHttpRequests(auth -> auth
-            // Public pages and static assets
             .requestMatchers("/", "/about", "/contact", "/shop/**", "/register", "/login", "/css/**", "/js/**",
                 "/images/**")
             .permitAll()
 
-            // Admin-only management page
             .requestMatchers("/admin/**").hasRole("ADMIN")
 
-            // Everything else
             .anyRequest().authenticated())
         .formLogin(form -> form
             .loginPage("/login")
