@@ -3,6 +3,7 @@ package com.ctrlaltkeeb.inventory_service.controller;
 import com.ctrlaltkeeb.inventory_service.model.InventoryItem;
 import com.ctrlaltkeeb.inventory_service.service.InventoryService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -51,5 +52,13 @@ public class InventoryController {
   @DeleteMapping("/{id}")
   public void delete(@PathVariable Long id) {
     service.delete(id);
+  }
+
+  @GetMapping("/search")
+  public List<InventoryItem> search(
+      @RequestParam Long productId,
+      @RequestParam int quantity) {
+
+    return service.search(productId, quantity);
   }
 }

@@ -31,4 +31,9 @@ public class InventoryService {
   public void delete(Long id) {
     repository.deleteById(id);
   }
+
+  public List<InventoryItem> search(Long productId, int quantity) {
+    return repository.findByProductIdAndQuantity(productId, quantity);
+  }
+
 }
